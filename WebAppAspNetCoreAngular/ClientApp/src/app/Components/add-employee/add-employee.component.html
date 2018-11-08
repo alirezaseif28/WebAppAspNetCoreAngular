@@ -1,0 +1,43 @@
+<h1>{{title}}</h1>
+<h3>Employee</h3>
+<hr />
+<form [formGroup]="employeeForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row"> <label class=" control-label col-md-12">Name</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="name"> </div> <span class="text-danger"
+      *ngIf="name.invalid && formDir.submitted">
+      Name is required.
+    </span>
+  </div>
+  <div class="form-group row"> <label class="control-label col-md-12" for="Gender">Gender</label>
+    <div class="col-md-4"> <select class="form-control" data-val="true" formControlName="genderId">
+        <option value="">-- Select Gender --</option>
+        <option *ngFor="let genderItem of genderList" value={{genderItem.id}}>
+          {{genderItem.name}}
+        </option>
+      </select> 
+    </div>
+       <span class="text-danger" *ngIf="genderId.invalid && formDir.submitted">
+      Gender is required
+    </span>
+  </div>
+  <div class="form-group row"> <label class="control-label col-md-12" for="Department">Department</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="department"> </div> <span class="text-danger"
+      *ngIf="department.invalid && formDir.submitted">
+      Department is required
+    </span>
+  </div>
+  <div class="form-group row"> <label class="control-label col-md-12" for="City">City</label>
+    <div class="col-md-4"> <select class="form-control" data-val="true" formControlName="cityId">
+        <option value="">--Select City--</option>
+        <option *ngFor="let cityItem of cityList" value={{cityItem.id}}>
+          {{cityItem.name}}
+        </option>
+      </select> 
+    </div> 
+    <span class="text-danger" *ngIf="cityId.invalid && formDir.submitted">
+      City is required
+    </span>
+  </div>
+  <div class="form-group"> <button type="submit" class="btn btn-default">Save</button> <button class="btn" (click)="cancel()">Cancel</button>
+  </div>
+</form>
